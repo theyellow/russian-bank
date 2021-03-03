@@ -1,37 +1,43 @@
-## Welcome to GitHub Pages
+# Russian Bank / Zankpatience [![CodeQL](https://github.com/theyellow/russian-bank/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/theyellow/russian-bank/actions/workflows/codeql-analysis.yml) [![Docker Image CI](https://github.com/theyellow/russian-bank/actions/workflows/docker-image.yml/badge.svg)](https://github.com/theyellow/russian-bank/actions/workflows/docker-image.yml) [![Node.js CI](https://github.com/theyellow/russian-bank/actions/workflows/node.js.yml/badge.svg)](https://github.com/theyellow/russian-bank/actions/workflows/node.js.yml)
 
-You can use the [editor on GitHub](https://github.com/theyellow/russian-bank/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+A solitaire card playing game for one player, based on the version available at [https://zankpatience.net](https://zankpatience.net).
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Prerequisites and Setup
+There are 2 ways to setup with different prerequisites, easiest way should be docker):
 
-### Markdown
+### Docker
+- Install docker for your OS [Docker](https://www.docker.com/)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+(the names `russianbank` and `russianbank-demo` are just examples and free to choose)
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+1. Checkout the repository
+2. Create image `russianbank`:
 ```
+# docker build -t russianbank .
+```
+3. Create and run container `russianbank-demo`:
+```
+# docker run --name russianbank-demo -p 8080:80 -d russianbank
+```
+4. Call [http://127.0.0.1:8080/app/pages/game.html](http://127.0.0.1:8080/app/pages/game.html)) 
+5. Have fun playing the game
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Development environment
+- [Node.js](https://nodejs.org/en/)
+- A JS package manager (e.g. [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/))
+- [Webpack](https://webpack.js.org/)
+- Any webserver (e.g. Apache or NGINX)
 
-### Jekyll Themes
+1. Checkout the repository
+2. Install the external JS libraries listed in the `package.json` file, e.g. by running 
+```
+# npm install
+```
+3. Run 
+```
+# webpack
+```
+to generate the bundeled JS file in the `app/js/dist` directory
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/theyellow/russian-bank/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+4. Call the `index.html` file in the browser of your choice
+5. Have fun playing with the code and the game
